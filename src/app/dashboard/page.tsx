@@ -20,7 +20,7 @@ const Dashboard = () => {
   const stats = useMemo(() => {
     return [
       { label: "Total Users", value: users.length || 0 },
-      { label: "Active Users", value: users.length || 0 }, // Replace with actual active users logic if needed
+      { label: "Active Users", value: users.length || 0 }, 
       { label: "Total Invoices", value: invoices.length || 0 },
     ];
   }, [users, invoices]);

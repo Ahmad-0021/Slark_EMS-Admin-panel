@@ -32,8 +32,10 @@ const Profile = () => {
       </div>
     );
   }
+  console.log(admin);
 
-  const invoices = admin?.user.invoices || [];
+  const invoices = admin?.invoices || [];
+  console.log(invoices);
 
   const totalPages = Math.ceil(invoices.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -48,16 +50,16 @@ const Profile = () => {
         <div className="space-y-4">
           <div className="flex items-center border-b pb-4">
             <span className="text-gray-600 font-semibold w-24">Name:</span>
-            <span className="text-gray-800">{admin?.user.username}</span>
+            <span className="text-gray-800">{admin?.username}</span>
           </div>
           <div className="flex items-center border-b pb-4">
             <span className="text-gray-600 font-semibold w-24">Email:</span>
-            <span className="text-gray-800">{admin?.user.email}</span>
+            <span className="text-gray-800">{admin?.email}</span>
           </div>
           <div className="flex items-center border-b pb-4">
             <span className="text-gray-600 font-semibold w-24">Role:</span>
             <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-              {admin?.user.role.name}
+              {admin?.role.name}
             </span>
           </div>
         </div>
@@ -83,7 +85,7 @@ const Profile = () => {
                       {startIndex + index + 1}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {invoice}
+                      {invoice._id}
                     </td>
                   </tr>
                 ))}
