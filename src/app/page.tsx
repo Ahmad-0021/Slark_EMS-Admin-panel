@@ -8,6 +8,7 @@ import { validationSchema } from "@/schema";
 import { useRouter } from "next/navigation";
 
 const LoginForm: React.FC = () => {
+  console.log(process.env.BACKEND_URL);
   const router = useRouter();
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -21,12 +22,8 @@ const LoginForm: React.FC = () => {
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      if (data.role.name === "admin") {
-        localStorage.setItem("token", data.token);
-        router.push("/dashboard");
-      } else {
-        router.push("https://slark-ems-frontend.vercel.app");
-      }
+      localStorage.setItem("token", data.token);
+      router.push("/dashboard");
     },
   });
 
@@ -45,7 +42,7 @@ const LoginForm: React.FC = () => {
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
         <h3 className="text-3xl font-semibold text-center text-purple-800">
-          Login to your  account
+          Login to your account
         </h3>
         <form onSubmit={formik.handleSubmit} className="space-y-6">
           <div>

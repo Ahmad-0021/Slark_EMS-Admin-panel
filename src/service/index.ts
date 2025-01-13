@@ -2,7 +2,8 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode"; // Correct import
 
-const url = "http://localhost:3001";
+const url = process.env.NEXT_PUBLIC_BACKEND_URL;
+console.log(url, "url");
 
 export const login = async (data: { email: string; password: string }) => {
   try {
@@ -11,7 +12,7 @@ export const login = async (data: { email: string; password: string }) => {
     return response.data;
   } catch (error: any) {
     console.error("Login error:", error.response?.data || error.message);
-    throw error;
+    throw error.response?.data || error.message;
   }
 };
 
@@ -41,7 +42,7 @@ export const fetchAllUsers = async () => {
     const response = await axios.get(`${url}/admin/all-users?page=1&limit=10`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-   
+
     return response.data.data.users || [];
   } catch (error: any) {
     console.error("Fetch users error:", error.response?.data || error.message);

@@ -7,6 +7,7 @@ import clsx from "clsx"; // Corrected import
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 
+
 const Sidebar = () => {
   const menuItems = [
     { name: "Dashboard", path: "/dashboard", icon: <FaTachometerAlt /> },
