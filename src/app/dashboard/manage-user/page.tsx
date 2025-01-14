@@ -3,8 +3,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllUsers } from "@/service";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const ManageUser = () => {
+  const router = useRouter();
+  const createHandler = ()=>{
+    router.push("/dashboard/create-user")
+  }
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -38,11 +43,16 @@ const ManageUser = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentUsers = allUsers.slice(startIndex, endIndex);
-  console.log(allUsers)
+  console.log(allUsers);
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800">Manage Users</h1>
+      <div className="flex justify-between">
+        <h1 className="text-3xl font-bold mb-8 text-gray-800">Manage Users</h1>
+        <button onClick={createHandler} className="text-white bg-green-700 hover:bg-green-800  font-semibold rounded-lg text-lg px-3  me-2 mb-3.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
+          Create user
+        </button>
+      </div>
       <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-100">
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-200 rounded-lg">

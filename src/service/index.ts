@@ -15,6 +15,24 @@ export const login = async (data: { email: string; password: string }) => {
     throw error.response?.data || error.message;
   }
 };
+export const registerUser = async (data: {
+  username: string;
+  email: string;
+  password: string;
+  committedHoursForThisMonth: number;
+  basicPayForThisMonth: number;
+  role: number;
+  type: number;
+}) => {
+  try {
+    const response = await axios.post(`${url}/admin/register-user`, data);
+    console.log(response.data);
+    return response.data;
+  } catch (error: any) {
+    console.error("Login error:", error.response?.data || error.message);
+    throw error.response?.data || error.message;
+  }
+};
 
 export const fetchAdmin = async () => {
   const token = localStorage.getItem("token");
