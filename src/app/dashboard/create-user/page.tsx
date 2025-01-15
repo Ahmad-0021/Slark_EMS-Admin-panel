@@ -28,9 +28,11 @@ const CreateInvoice = () => {
       committedHoursForThisMonth: 0,
       role: "",
       type: "",
+      joiningDate: "",
     },
     validationSchema: createUserSchema,
     onSubmit: async (values) => {
+      
       try {
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/register-user`,
@@ -107,6 +109,12 @@ const CreateInvoice = () => {
                   title: "Enter your job type",
                 },
                 { name: "role", label: "Role", title: "Enter your Role" },
+                {
+                  name: "joiningDate",
+                  label: "Joining date",
+                  title: "Enter joining date",
+                  type: "date",
+                },
               ].map((item) => (
                 <div key={item.name}>
                   <label
